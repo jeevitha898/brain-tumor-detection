@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Project Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.js" integrity="sha512-o4gKX6jcK0rdciOZ9X8COYkV9gviTJAbYEVW8aC3OgIRuaKDmcT9/OFXBVzHSSOxiTjsTktqrUvCUrHkQHSn9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <style>
+  .container{
+      padding-left: 25%;
+      padding-right: 25%;
+      
+  }
+    #home, #form1, #form2, #form3, #form4{
+      display: none;
+        margin: auto;
+        padding: 150px;
+        background-color: rgba(0, 0, 0, 0.50);
+        color: white;
+        /* opacity: 0; */
+        /* transition: all 1s linear;
+        transform: scale(0); */
+    }
+    #home.active, #form1.active, #form2.active, #form3.active, #form4.active{
+        /* transform: scale(1); */
+        /* opacity: 1; */
+        display: block;
+    }
+        .color-white{
+            color:#ffffff !important;
+        }
+h2{
+  text-transform: uppercase;
+}
+  </style>
+</head>
+ <body style="background-image: url('static/login.jpg');background-size: 100% 100vh; background-repeat: no-repeat;"> 
+ <center>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+   
+
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" data-value="#form1" onclick="toggleform(event)">Brain Tumor Detector</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li ><a data-value="#form1" onclick="toggleform(event)"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+        <!-- <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Page 1-1</a></li>
+            <li><a href="#">Page 1-2</a></li>
+            <li><a href="#">Page 1-3</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Page 2</a></li>
+        <li><a href="#">Page 3</a></li> -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a data-value="#form1" onclick="toggleform(event)"><span class="glyphicon glyphicon-user"></span> User</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<section class="justify-content:center">
+<div class="container">
+  {% if msg %}
+<div class="alert alert-warning alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Warning!</strong> {{msg}}
+</div>
+{% endif %}
+    <form  method="post" action="{{ url_for('userlog')}}" id="form1" class="active">
+      <h2 class=color-white>User Login</h2>
+      <hr>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" placeholder="Enter username" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button></br></br>
+      <p>Click here to <a data-value="#form2" onclick="toggleform(event)">Sign up</a></p>
+    </form>
+
+    
+    <form method="post" action="{{ url_for('userreg')}}" id="form2">
+      <h2>USER REGISTRATION</h2>
+      <hr>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" placeholder="Enter username" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Mobile No.:</label>
+        <input type="tel" class="form-control" id="phone" placeholder="Enter mobile number" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button></br></br>
+      <p>Click here to <a data-value="#form1" onclick="toggleform(event)">Sign in</a></p>
+    </form>
+
+</div>
+</section>
+</center>
+<script>
+    function toggleform(e) {
+    var Id =(e.target.getAttribute('data-value'))
+    let Items= ['#form1', '#form2'];
+    Items.map(function(item) {
+        if(Id === item ) {
+            $(item).addClass("active");
+        }
+        else {
+        $(item).removeClass("active");
+        }
+    })
+}
+
+</script>
+
+</body>
+</html>
